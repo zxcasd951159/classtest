@@ -34,7 +34,7 @@ def KeyWord(text):
     KeyWordDict = {"Hi":"Hello",
                    "Oh":"Ya",
     			   "He":"Ha"}
-    for k in KeyboardDict.keys():
+    for k in KeyWordDict.keys():
 	    if text.find(k)  != -1:
 		    return [True,keyWordDict[k]]
     return [False]
