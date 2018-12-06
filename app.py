@@ -30,10 +30,10 @@ def callback():
         abort(400)
     return 'OK'
 
-def Keyboard(text)
-	KeywordDict = ("Hi":"Hello"
-                   "Oh":"Ya"
-				   "He":"Ha")
+def KeyWord(text):
+    KeyWordDict = {"Hi":"Hello",
+                   "Oh":"Ya",
+    			   "He":"Ha"}
     for k in KeyboardDict.keys():
 	    if text.find(k)  != -1:
 		    return [True,keyWordDict[k]]
@@ -44,7 +44,7 @@ def Reply(event):
     if Ktemp[0]:
 	    line_bot_api.reply_message(event.reply_token,
 		    TextSendMessage(text = Ktemp[1]))
-	else:
+    else:
 	    line_bot_api.reply_message(event.reply_token,
 		    TextSendMessage(text = event.message.text))
 	
@@ -52,7 +52,7 @@ def Reply(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     try:
-	Reply(event)
+        Reply(event)
     except Exception as e:
         line_bot_api.reply_message(event.reply_token,
             TextSendMessage(text=str(e)))
