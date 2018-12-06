@@ -30,31 +30,59 @@ def callback():
         abort(400)
     return 'OK'
 
-def KeyWord(text):
+'''def KeyWord(text):
     KeyWordDict = {"Hi":"Hello",
                    "Oh":"Ya",
     			   "He":"Ha"}
     for k in KeyWordDict.keys():
-	    if text.find(k)  != -1:
-		    return [True,KeyWordDict[k]]
+        if text.find(k) != -1:
+            return [True,KeyWordDict[k]]
     return [False]
-	
-def Reply(event):
+'''
+def Button(event):
+    message = TemplateSendMessage(
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+            thumbnail_image_url='https://example.com/image.jpg',
+            title='Menu',
+            text='Please select',
+            actions=[
+                PostbackTemplateAction(
+                    label='postback',
+                    text='postback text',
+                    data='action=buy&itemid=1'
+                ),
+                MessageTemplateAction(
+                    label='message',
+                    text='message text'
+                ),
+                URITemplateAction(
+                    label='uri',
+                    uri='http://example.com/'
+                )
+            ]
+        )
+    )
+    line_bot_api.reply_message(event.reply_token, message)
+
+'''def Reply(event):
     Ktemp = KeyWord(event.message.text)
     if Ktemp[0]:
-	    line_bot_api.reply_message(event.reply_token,
-		    TextSendMessage(text = Ktemp[1]))
+        line_bot_api.reply_message(event.reply_token,
+            TextSendMessage(text = Ktemp[1]))
     else:
-	    line_bot_api.reply_message(event.reply_token,
-		    TextSendMessage(text = event.message.text))
-	
+        line_bot_api.reply_message(event.reply_token,
+            TextSendMessage(text = event.message.text))
+            '''
+
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     try:
-        Reply(event)
+        Button(event)
+        #Reply(event)
     except Exception as e:
-        line_bot_api.reply_message(event.reply_token,
+        line_bot_api.reply_message(event.reply_token, 
             TextSendMessage(text=str(e)))
 
 import os
