@@ -36,7 +36,7 @@ def KeyWord(text):
     			   "He":"Ha"}
     for k in KeyWordDict.keys():
 	    if text.find(k)  != -1:
-		    return [True,keyWordDict[k]]
+		    return [True,KeyWordDict[k]]
     return [False]
 	
 def Reply(event):
