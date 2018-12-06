@@ -35,7 +35,7 @@ def Keyboard(text)
                    "Oh":"Ya"
 				   "He":"Ha")
     for k in KeyboardDict.keys():
-	    if text.find(k)  |= -1:
+	    if text.find(k)  != -1:
 		    return [True,keyWordDict[k]]
     return [False]
 	
